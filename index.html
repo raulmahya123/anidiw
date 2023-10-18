@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>UNTUK RAHMA AZZAHRA ALIAS SITI</title>
+    <title>BUAT RARA</title>
     <style>
         /* CSS untuk styling */
         body {
@@ -22,10 +22,9 @@
     </style>
 </head>
 <body>
-    <center>
-    <h1>HA HI HA HI HE </h1>
+    <h1>HAI RARA SEMOGA MOOD LAGI YAKK DAN BISA SENYUM LAGI</h1>
     <div id="products"></div>
-</center>
+
     <script>
         // Fungsi untuk membuat tampilan produk
         function createProductCard(product) {
@@ -68,20 +67,17 @@
 
         // Fungsi untuk mengambil data dari API
         function fetchData() {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'http://54.179.160.206:8080/productss', true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    var productsData = response.data.data;
+            fetch('http://54.179.160.206:8080/productss')
+                .then(response => response.json())
+                .then(data => {
+                    var productsData = data.data.data;
                     var productsContainer = document.getElementById('products');
-                    productsData.forEach(function (product) {
+                    productsData.forEach(product => {
                         var productCard = createProductCard(product);
                         productsContainer.appendChild(productCard);
                     });
-                }
-            };
-            xhr.send();
+                })
+                .catch(error => console.error('Gagal mengambil data:', error));
         }
 
         // Panggil fungsi fetchData untuk mengambil data dari API
