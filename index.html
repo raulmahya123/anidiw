@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Produk dari API</title>
+    <style>
+        /* CSS untuk styling */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            display: inline-block;
+            width: 200px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <h1>HA HI HA HI </h1>
+    <div id="products"></div>
+</center>
+    <script>
+        // Fungsi untuk membuat tampilan produk
+        function createProductCard(product) {
+            var productCard = document.createElement('div');
+            productCard.classList.add('product');
+
+            // Gambar produk
+            var image = document.createElement('img');
+            image.src = product.image;
+
+            // Nama produk
+            var name = document.createElement('h2');
+            name.textContent = product.name;
+
+            // Deskripsi produk
+            var description = document.createElement('p');
+            description.textContent = product.description;
+
+            // Harga produk
+            var price = document.createElement('p');
+            price.textContent = 'Harga: ' + (product.price ? '$' + product.price : 'Tidak tersedia');
+
+            // Stok produk
+            var stock = document.createElement('p');
+            stock.textContent = 'Stok: ' + (product.stock ? product.stock : 'Tidak tersedia');
+
+            // Ukuran produk
+            var size = document.createElement('p');
+            size.textContent = 'Ukuran: ' + product.size;
+
+            productCard.appendChild(image);
+            productCard.appendChild(name);
+            productCard.appendChild(description);
+            productCard.appendChild(price);
+            productCard.appendChild(stock);
+            productCard.appendChild(size);
+
+            return productCard;
+        }
+
+        // Fungsi untuk mengambil data dari API
+        function fetchData() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://54.179.160.206:8080/productss', true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    var productsData = response.data.data;
+                    var productsContainer = document.getElementById('products');
+                    productsData.forEach(function (product) {
+                        var productCard = createProductCard(product);
+                        productsContainer.appendChild(productCard);
+                    });
+                }
+            };
+            xhr.send();
+        }
+
+        // Panggil fungsi fetchData untuk mengambil data dari API
+        fetchData();
+    </script>
+</body>
+</html>
