@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>BUAT RARA</title>
+    <title>Daftar Produk dari API</title>
     <style>
         /* CSS untuk styling */
         body {
@@ -22,9 +22,12 @@
     </style>
 </head>
 <body>
-    <h1>HAI RARA SEMOGA MOOD LAGI YAKK DAN BISA SENYUM LAGI</h1>
-    <div id="products"></div>
+    <center>
+    <h1>BUAT RARA SYNG</h1>
+    <img src="./i.jpg" alt="rara">
 
+    <div id="products"></div>
+</center>
     <script>
         // Fungsi untuk membuat tampilan produk
         function createProductCard(product) {
@@ -45,17 +48,16 @@
 
             // Harga produk
             var price = document.createElement('p');
-            price.textContent = 'Harga: ' + (product.price ? '$' + product.price : 'Tidak tersedia');
+            price.textContent = 'Harga: ' + product.price;
 
             // Stok produk
             var stock = document.createElement('p');
-            stock.textContent = 'Stok: ' + (product.stock ? product.stock : 'Tidak tersedia');
+            stock.textContent = 'Stok: ' + product.stock;
 
             // Ukuran produk
             var size = document.createElement('p');
             size.textContent = 'Ukuran: ' + product.size;
 
-            productCard.appendChild(image);
             productCard.appendChild(name);
             productCard.appendChild(description);
             productCard.appendChild(price);
@@ -67,20 +69,32 @@
 
         // Fungsi untuk mengambil data dari API
         function fetchData() {
-            fetch('http://54.179.160.206:8080/productss')
-                .then(response => response.json())
-                .then(data => {
-                    var productsData = data.data.data;
-                    var productsContainer = document.getElementById('products');
-                    productsData.forEach(product => {
-                        var productCard = createProductCard(product);
-                        productsContainer.appendChild(productCard);
-                    });
-                })
-                .catch(error => console.error('Gagal mengambil data:', error));
+            var data = {
+                "status": 200,
+                "message": "success",
+                "data": {
+                    "data": [
+                        {
+                            "ID": "652f4b056a148283ce61c3d5",
+                            "name": "SITI RAHMA AZZAHRA",
+                            "description": "SEMANGAT KERJANYA AKU SAYANG KAMU SEMOGA KEDEPANNYA MOODNYA BAGUS LAGI YA SYNG LOVE YOU",
+                            "price": "TIDAK ADA HARGANYA WKWK",
+                            "stock": "1 DI DUNIA",
+                            "size": "BEBAS",
+                        }
+                    ]
+                }
+            };
+
+            var productsData = data.data.data;
+            var productsContainer = document.getElementById('products');
+            productsData.forEach(function (product) {
+                var productCard = createProductCard(product);
+                productsContainer.appendChild(productCard);
+            });
         }
 
-        // Panggil fungsi fetchData untuk mengambil data dari API
+        // Panggil fungsi fetchData untuk menampilkan data
         fetchData();
     </script>
 </body>
