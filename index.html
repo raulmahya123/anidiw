@@ -1,33 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Daftar Produk dari API</title>
+    <title>Produk Spesial untuk Anindia Wardini</title>
     <style>
         /* CSS untuk styling */
         body {
             font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff69b4;
+            font-size: 2.5em;
+        }
+        .product-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         .product {
             border: 1px solid #ccc;
-            padding: 10px;
+            border-radius: 10px;
+            padding: 20px;
             margin: 10px;
-            display: inline-block;
-            width: 200px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 300px;
         }
-        img {
-            max-width: 60%;
+        .product img {
+            max-width: 100%;
             height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .product h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .product p {
+            margin: 5px 0;
+            font-size: 1.1em;
         }
     </style>
 </head>
 <body>
     <center>
-    <h1>BUAT ANINDIA WARDINI ISTRIKU</h1>
-    <img src="./anin.jpeg" alt="anin">
+        <h1>BUAT ANINDIA WARDINI ISTRIKU</h1>
+        <img src="./anin.jpeg" alt="Anin" style="width: 200px; border-radius: 50%; margin-bottom: 20px;">
 
-    <div id="products"></div>
-</center>
+        <div id="products" class="product-container"></div>
+    </center>
     <script>
         // Fungsi untuk membuat tampilan produk
         function createProductCard(product) {
@@ -58,6 +84,7 @@
             var size = document.createElement('p');
             size.textContent = 'Ukuran: ' + product.size;
 
+            productCard.appendChild(image);
             productCard.appendChild(name);
             productCard.appendChild(description);
             productCard.appendChild(price);
@@ -76,11 +103,12 @@
                     "data": [
                         {
                             "ID": "652f4b056a148283ce61c3d5",
-                            "name": "ANINDIA WARDINI",
-                            "description": "SEMANGAT KERJANYA AKU SAYANG KAMU SEMOGA KEDEPANNYA MOODNYA BAGUS LAGI YA ISTRIKU SEMOGA KITA BISA BAHAGIA SELAMANYA,JANGAN BERUBAH YA ISTRIKU,TEMENIN AKU TERUS DALAM KONDISI APAPU",
+                            "name": "ANINDIA WARDANI",
+                            "description": "SEMANGAT KERJANYA AKU SAYANG KAMU SEMOGA KEDEPANNYA MOODNYA BAGUS LAGI YA ISTRIKU SEMOGA KITA BISA BAHAGIA SELAMANYA, JANGAN BERUBAH YA ISTRIKU, TEMENIN AKU TERUS DALAM KONDISI APAPUN",
                             "price": "TIDAK ADA HARGANYA WKWK",
                             "stock": "1 DI DUNIA",
                             "size": "BEBAS",
+                            "image": "./anin.jpeg" // Gambar ditambahkan di sini
                         }
                     ]
                 }
